@@ -16,7 +16,6 @@ import org.springframework.http.HttpHeaders;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.MediaType;
 import org.springframework.http.ResponseEntity;
-import org.springframework.web.bind.annotation.CrossOrigin;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
@@ -28,9 +27,12 @@ import com.study.service.CustomerService;
 import com.study.web.util.HeaderUtil;
 import com.study.web.util.PaginationUtil;
 
+/**
+ * REST @Customer Services.
+ * 
+ * @author Mauricio Esteves
+ */
 @RestController
-//@CrossOrigin(origins = "*", maxAge = 3600, allowedHeaders = {"Access-Control-Allow-Origin"}, 
-//	methods = {RequestMethod.PUT, RequestMethod.POST, RequestMethod.DELETE, RequestMethod.GET, RequestMethod.OPTIONS})
 public class CustomerResource {
 
 	private final Logger log = LoggerFactory.getLogger(CustomerResource.class);
