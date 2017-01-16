@@ -29,7 +29,8 @@ import com.study.web.util.HeaderUtil;
 import com.study.web.util.PaginationUtil;
 
 @RestController
-@CrossOrigin(allowedHeaders = {"Access-Control-Allow-Origin"})
+//@CrossOrigin(origins = "*", maxAge = 3600, allowedHeaders = {"Access-Control-Allow-Origin"}, 
+//	methods = {RequestMethod.PUT, RequestMethod.POST, RequestMethod.DELETE, RequestMethod.GET, RequestMethod.OPTIONS})
 public class CustomerResource {
 
 	private final Logger log = LoggerFactory.getLogger(CustomerResource.class);
@@ -47,7 +48,7 @@ public class CustomerResource {
 	@RequestMapping(value="/customers", 
 			method = RequestMethod.POST,
 			produces = MediaType.APPLICATION_JSON_VALUE)
-	public ResponseEntity<Customer> createCustomer(@Valid @RequestBody Customer customer) 
+	public ResponseEntity<Customer> createCustomer(@Valid @RequestBody Customer customer)
 			throws URISyntaxException {
 		log.debug("REST request to save Customer : {})", customer);
 		if (customer.getId() != null) {
