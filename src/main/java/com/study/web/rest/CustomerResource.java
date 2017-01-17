@@ -107,6 +107,26 @@ public class CustomerResource {
 		return new ResponseEntity<>(page.getContent(), headers, HttpStatus.OK);
 	}
 
+	/**
+	 * GET  /customers:name : : get all the customers by name.
+	 * 
+	 * ResponseEntity is meant to represent the entire HTTP response. You can control anything 
+	 * that goes into it: status code, headers, and body.
+	 * 
+	 * @param name the name of the customer to search
+     * @return the ResponseEntity with status 200 (OK) and the list of customers in body
+     * @throws URISyntaxException if there is an error to generate the pagination HTTP headers
+     */
+	@RequestMapping(value = "/customers/{name}",
+			method = RequestMethod.GET,
+			produces = MediaType.APPLICATION_JSON_VALUE)
+	public ResponseEntity<List<Customer>> getCustomersByName(@PathVariable String name)
+		throws URISyntaxException {
+		log.debug("REST request to get a page of Customers by name");
+		List<Customer> customers = customerService.findByName(name);
+		return new ResponseEntity<>(customers, HttpStatus.OK);
+	}
+    
     /**
      * GET  /customers/:id : get the "id" customer.
      *

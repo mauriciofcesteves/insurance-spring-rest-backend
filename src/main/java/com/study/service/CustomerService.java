@@ -1,5 +1,7 @@
 package com.study.service;
 
+import java.util.List;
+
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -61,6 +63,19 @@ public class CustomerService {
         return customer;
     }
 
+    /**
+     *  Get a list of customers by name.
+     *
+     *  @param name the name of the entity
+     *  @return the list of entities
+     */
+    @Transactional(readOnly = true) 
+    public List<Customer> findByName(String name) {
+        log.debug("Request to get Customers by Name : {}", name);
+        List<Customer> customers = customerRepository.findByName(name);
+        return customers;
+    }
+    
     /**
      *  Delete the  customer by id.
      *
