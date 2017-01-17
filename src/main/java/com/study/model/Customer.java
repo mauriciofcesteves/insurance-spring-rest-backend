@@ -10,7 +10,6 @@ import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.Table;
-import javax.validation.constraints.NotNull;
 
 /**
  * A Customer.
@@ -34,8 +33,7 @@ public class Customer implements Serializable {
     @Column(name = "name")
     private String name;
 
-    @NotNull
-    @Column(name = "securecompany", nullable = false)
+    @Column(name = "securecompany")
     private String securecompany;
 
     @Column(name = "licenseplate")
