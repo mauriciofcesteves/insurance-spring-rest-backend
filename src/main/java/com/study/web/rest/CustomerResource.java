@@ -117,7 +117,7 @@ public class CustomerResource {
      * @return the ResponseEntity with status 200 (OK) and the list of customers in body
      * @throws URISyntaxException if there is an error to generate the pagination HTTP headers
      */
-	@RequestMapping(value = "/customers/{name}",
+	@RequestMapping(value = "/customers/name/{name}",
 			method = RequestMethod.GET,
 			produces = MediaType.APPLICATION_JSON_VALUE)
 	public ResponseEntity<List<Customer>> getCustomersByName(@PathVariable String name)
@@ -133,10 +133,10 @@ public class CustomerResource {
      * @param id the id of the customer to retrieve
      * @return the ResponseEntity with status 200 (OK) and with body the customer, or with status 404 (Not Found)
      */
-    @RequestMapping(value = "/customers/{id}",
+    @RequestMapping(value = "/customers/id/{id}",
         method = RequestMethod.GET,
         produces = MediaType.APPLICATION_JSON_VALUE)
-    public ResponseEntity<Customer> getCustomer(@PathVariable Long id) {
+    public ResponseEntity<Customer> getCustomer(@PathVariable Integer id) {
         log.debug("REST request to get Customer : {}", id);
         Customer customer = customerService.findOne(id);
         return Optional.ofNullable(customer)
@@ -155,7 +155,7 @@ public class CustomerResource {
     @RequestMapping(value = "/customers/{id}",
         method = RequestMethod.DELETE,
         produces = MediaType.APPLICATION_JSON_VALUE)
-    public ResponseEntity<Void> deleteCustomer(@PathVariable Long id) {
+    public ResponseEntity<Void> deleteCustomer(@PathVariable Integer id) {
         log.debug("REST request to delete Customer : {}", id);
         customerService.delete(id);
         return ResponseEntity.ok().headers(HeaderUtil.createEntityDeletionAlert("customer", id.toString())).build();

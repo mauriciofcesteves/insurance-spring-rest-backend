@@ -16,8 +16,8 @@ import com.study.model.Customer;
  * -PagingAndSortingRepository provide methods to do pagination and sorting records.
  * -JpaRepository provides some JPA related method such as flushing the persistence context and delete record in a batch.
  */
-public interface CustomerRepository extends JpaRepository<Customer, Long> {
+public interface CustomerRepository extends JpaRepository<Customer, Integer> {
 
-	List<Customer> findByName(@Param("name") String name);
+	List<Customer> findByNome(@Param("nome") String nome);
 
 }

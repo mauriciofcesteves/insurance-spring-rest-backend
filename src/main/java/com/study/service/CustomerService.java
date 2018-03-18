@@ -57,7 +57,7 @@ public class CustomerService {
      *  @return the entity
      */
     @Transactional(readOnly = true) 
-    public Customer findOne(Long id) {
+    public Customer findOne(Integer id) {
         log.debug("Request to get Customer : {}", id);
         Customer customer = customerRepository.findOne(id);
         return customer;
@@ -72,7 +72,7 @@ public class CustomerService {
     @Transactional(readOnly = true) 
     public List<Customer> findByName(String name) {
         log.debug("Request to get Customers by Name : {}", name);
-        List<Customer> customers = customerRepository.findByName(name);
+        List<Customer> customers = customerRepository.findByNome(name);
         return customers;
     }
     
@@ -81,7 +81,7 @@ public class CustomerService {
      *
      *  @param id the id of the entity
      */
-    public void delete(Long id) {
+    public void delete(Integer id) {
         log.debug("Request to delete Customer : {}", id);
         customerRepository.delete(id);
     }

@@ -1,181 +1,107 @@
+
 package com.study.model;
 
 import java.io.Serializable;
-import java.time.LocalDate;
-import java.util.Objects;
+import java.util.Date;
 
 import javax.persistence.Column;
 import javax.persistence.Entity;
-import javax.persistence.GeneratedValue;
-import javax.persistence.GenerationType;
-import javax.persistence.Id;
-import javax.persistence.Table;
+import javax.persistence.Inheritance;
+import javax.persistence.InheritanceType;
 
-/**
- * A Customer.
- */
-@Entity
-@Table(name = "customer")
-public class Customer implements Serializable {
+import org.joda.time.LocalDate;
 
-    private static final long serialVersionUID = 1L;
+@Entity(name = "Professor")
+@Inheritance(strategy=InheritanceType.TABLE_PER_CLASS)
+public class Customer extends Funcionario implements Serializable {
 
-    @Id
-    @GeneratedValue(strategy = GenerationType.AUTO)
-    private Long id;
+	private static final long serialVersionUID = 1L;
 
-    @Column(name = "cpf")
-    private String cpf;
+	@Column(length=11)
+	private String cpf;
+	
+	@Column(length=14)
+	private String cnpj;
+	
+	@Column(length=7)
+	private String placa;
+	
+	@Column(length=50)
+	private String seguradora;
 
-    @Column(name = "cnpj")
-    private String cnpj;
+	@Column(length=50)
+	private String titulacao;
+	
+	@Column(name="vigenciainicio", nullable = true)
+	private Date vigenciaInicio;
+	
+	@Column(name="vigenciafim", nullable = true)
+	private Date vigenciaFim;
 
-    @Column(name = "name")
-    private String name;
+	@Column(length=100)
+	private String observacao;
 
-    @Column(name = "securecompany")
-    private String securecompany;
+	public String getCpf() {
+		return cpf;
+	}
 
-    @Column(name = "licenseplate")
-    private String licenseplate;
+	public void setCpf(String cpf) {
+		this.cpf = cpf;
+	}
 
-    @Column(name = "initial_term")
-    private LocalDate initialTerm;
+	public String getPlaca() {
+		return placa;
+	}
 
-    @Column(name = "final_term")
-    private LocalDate finalTerm;
+	public void setPlaca(String placa) {
+		this.placa = placa;
+	}
 
-    public Long getId() {
-        return id;
-    }
+	public String getSeguradora() {
+		return seguradora;
+	}
 
-    public void setId(Long id) {
-        this.id = id;
-    }
+	public void setSeguradora(String seguradora) {
+		this.seguradora = seguradora;
+	}
 
-    public String getCpf() {
-        return cpf;
-    }
+	public String getTitulacao() {
+		return titulacao;
+	}
 
-    public Customer cpf(String cpf) {
-        this.cpf = cpf;
-        return this;
-    }
+	public void setTitulacao(String titulacao) {
+		this.titulacao = titulacao;
+	}
 
-    public void setCpf(String cpf) {
-        this.cpf = cpf;
-    }
+	public String getVigenciaInicio() {
+		return new LocalDate(vigenciaInicio).toString("dd/MM/yyyy");
+	}
 
-    public String getCnpj() {
-        return cnpj;
-    }
+	public void setVigenciaInicio(Date vigenciaInicio) {
+		this.vigenciaInicio = vigenciaInicio;
+	}
 
-    public Customer cnpj(String cnpj) {
-        this.cnpj = cnpj;
-        return this;
-    }
+	public String getVigenciaFim() {
+		return new LocalDate(vigenciaFim).toString("dd/MM/yyyy");
+	}
 
-    public void setCnpj(String cnpj) {
-        this.cnpj = cnpj;
-    }
+	public void setVigenciaFim(Date vigenciaFim) {
+		this.vigenciaFim = vigenciaFim;
+	}
 
-    public String getName() {
-        return name;
-    }
+	public String getCnpj() {
+		return cnpj;
+	}
 
-    public Customer name(String name) {
-        this.name = name;
-        return this;
-    }
+	public void setCnpj(String cnpj) {
+		this.cnpj = cnpj;
+	}
 
-    public void setName(String name) {
-        this.name = name;
-    }
+	public String getObservacao() {
+		return observacao;
+	}
 
-    public String getSecurecompany() {
-        return securecompany;
-    }
-
-    public Customer securecompany(String securecompany) {
-        this.securecompany = securecompany;
-        return this;
-    }
-
-    public void setSecurecompany(String securecompany) {
-        this.securecompany = securecompany;
-    }
-
-    public String getLicenseplate() {
-        return licenseplate;
-    }
-
-    public Customer licenseplate(String licenseplate) {
-        this.licenseplate = licenseplate;
-        return this;
-    }
-
-    public void setLicenseplate(String licenseplate) {
-        this.licenseplate = licenseplate;
-    }
-
-    public LocalDate getInitialTerm() {
-        return initialTerm;
-    }
-
-    public Customer initialTerm(LocalDate initialTerm) {
-        this.initialTerm = initialTerm;
-        return this;
-    }
-
-    public void setInitialTerm(LocalDate initialTerm) {
-        this.initialTerm = initialTerm;
-    }
-
-    public LocalDate getFinalTerm() {
-        return finalTerm;
-    }
-
-    public Customer finalTerm(LocalDate finalTerm) {
-        this.finalTerm = finalTerm;
-        return this;
-    }
-
-    public void setFinalTerm(LocalDate finalTerm) {
-        this.finalTerm = finalTerm;
-    }
-
-    @Override
-    public boolean equals(Object o) {
-        if (this == o) {
-            return true;
-        }
-        if (o == null || getClass() != o.getClass()) {
-            return false;
-        }
-        Customer customer = (Customer) o;
-        if(customer.id == null || id == null) {
-            return false;
-        }
-        return Objects.equals(id, customer.id);
-    }
-
-    @Override
-    public int hashCode() {
-        return Objects.hashCode(id);
-    }
-
-    @Override
-    public String toString() {
-        return "Customer{" +
-            "id=" + id +
-            ", cpf='" + cpf + "'" +
-            ", cnpj='" + cnpj + "'" +
-            ", name='" + name + "'" +
-            ", securecompany='" + securecompany + "'" +
-            ", licenseplate='" + licenseplate + "'" +
-            ", initialTerm='" + initialTerm + "'" +
-            ", finalTerm='" + finalTerm + "'" +
-            '}';
-    }
-
+	public void setObservacao(String observacao) {
+		this.observacao = observacao;
+	}
 }
